@@ -7,14 +7,14 @@ PATH_OBJ = ./obj
 PATH_LOG = ./log
 
 OUT_MAIN = main
-OUT_BUILDING = building
+OUT_BUILDING = building_proc
 #----------------------------------------------
 vpath %.cpp $(PATH_SRC)
 vpath %.hpp $(PATH_INC)
 
 OBJS_MAIN = main.o log.o named_pipe.o gather_data.o
 
-OBJS_BUILDING = building.o
+OBJS_BUILDING = building_proc.o building.o
 
 #-----------------------------------------------
 
@@ -32,13 +32,16 @@ $(PATH_OBJ)/main.o: main.cpp globals.hpp
 $(PATH_OBJ)/log.o: log.cpp log.hpp globals.hpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
+$(PATH_OBJ)/building.o: building.cpp building.hpp globals.hpp log.hpp
+	$(CC) $(CFLAGS) -c -o $@ $<
+
 $(PATH_OBJ)/named_pipe.o: named_pipe.cpp named_pipe.hpp globals.hpp log.hpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(PATH_OBJ)/gather_data.o: gather_data.cpp gather_data.hpp globals.hpp named_pipe.hpp log.hpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-$(PATH_OBJ)/building.o: building.cpp building.hpp
+$(PATH_OBJ)/building_proc.o: building_proc.cpp building.hpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(PATH_OBJ): ; mkdir -p $@

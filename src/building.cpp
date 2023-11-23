@@ -3,9 +3,11 @@
 
 using namespace std;
 
-int main(int argc, char* argv[]){
-    string name = argv[0];
-    // string path = "./buildings/" + name + "/Gas.csv";
-     
-    exit(EXIT_SUCCESS);
+building_manager :: building_manager(string name_){
+    name = name_;
+}
+
+
+string building_manager :: show_name(){
+    return name;
 }

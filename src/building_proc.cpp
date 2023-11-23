@@ -9,7 +9,6 @@ int main(int argc, char* argv[]){
     try
     {
         building_manager_.run();
-        cout << building_manager_.abbas << endl;
     }
     catch(const std::exception& e)
     {

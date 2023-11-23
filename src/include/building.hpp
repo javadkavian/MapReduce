@@ -16,7 +16,6 @@ class building_manager {
         void configure_resource_addresses();
         void run();
         void get_water_attributes();
-        std :: string abbas;
     private:
         std :: string name;
         std :: map <std :: string, resource> resource_report;

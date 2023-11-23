@@ -9,7 +9,7 @@ building_manager :: building_manager(string name_){
 
 
 void building_manager :: configure_resource_addresses(){
-    water_address = "./buildings/" + name + "Water/.csv";
+    water_address = "./buildings/" + name + "/Water.csv";
     gas_address = "./buildings/" + name + "/Gas.csv";
     elec_address = "./buildings/" + name + "/Electricity.csv";
 }
@@ -32,7 +32,7 @@ void building_manager :: get_water_attributes(){
         char tmp[1024];
         memset(tmp, 0, 1024);
         read(water_pipe_fds[READ_END], tmp, 1024);
-        
+        printf("%s", tmp);
 
     }
     else if(pid == 0){
@@ -40,7 +40,7 @@ void building_manager :: get_water_attributes(){
         dup2(water_pipe_fds[WRITE_END], STDOUT_FILENO);
         close(water_pipe_fds[WRITE_END]);
         close(water_pipe_fds[READ_END]);
-        execl(WATER_PROC_ADDR.c_str(), "reza", nullptr);
+        execl(CSV_PARSER_PROC.c_str(), water_address.c_str(), nullptr);
     }
     else{
         throw runtime_error(FORK_FAILED);

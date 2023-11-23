@@ -8,7 +8,7 @@ PATH_LOG = ./log
 
 OUT_MAIN = main
 OUT_BUILDING = building_proc
-OUT_WATER = water
+OUT_CSV = csv_parser
 #----------------------------------------------
 vpath %.cpp $(PATH_SRC)
 vpath %.hpp $(PATH_INC)
@@ -17,12 +17,15 @@ OBJS_MAIN = main.o log.o named_pipe.o gather_data.o
 
 OBJS_BUILDING = building_proc.o building.o log.o
 
-OBJ_WATER = water.o
+OBJ_CSV = csv_parser.o
 #-----------------------------------------------
 
-all: $(PATH_OBJ) $(PATH_LOG) $(OUT_MAIN) $(OUT_BUILDING)
+all: $(PATH_OBJ) $(PATH_LOG) $(OUT_MAIN) $(OUT_BUILDING) $(OUT_CSV)
 
 $(OUT_MAIN): $(addprefix $(PATH_OBJ)/, $(OBJS_MAIN))
+	$(CC) $(CFLAGS) -o $@ $^
+
+$(OUT_CSV): $(addprefix $(PATH_OBJ)/, $(OBJ_CSV))
 	$(CC) $(CFLAGS) -o $@ $^
 
 $(OUT_BUILDING): $(addprefix $(PATH_OBJ)/, $(OBJS_BUILDING))
@@ -46,7 +49,7 @@ $(PATH_OBJ)/gather_data.o: gather_data.cpp gather_data.hpp globals.hpp named_pip
 $(PATH_OBJ)/building_proc.o: building_proc.cpp building.hpp log.hpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-$(PATH_OBJ)/water.o: water.cpp
+$(PATH_OBJ)/csv_parser.o: csv_parser.cpp globals.hpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(PATH_OBJ): ; mkdir -p $@

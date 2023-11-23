@@ -4,5 +4,5 @@
 
 int main(int argc, char* argv[]){
     std :: cout << "abbas" << std :: endl;
-    return 1;
+    exit(EXIT_FAILURE);
 }

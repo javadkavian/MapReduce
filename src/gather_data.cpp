@@ -25,16 +25,21 @@ void gather_data :: make_building_processes() {
             int return_status;
             logInfo(("waiting for " + building.name + " to gather information...").c_str());
             wait(&return_status);
-            if(return_status == EXIT_FAILURE){
-                throw runtime_error(BUILDING_FAILED);
+            cout << return_status << endl;
+            if(return_status == FAILURE){
+                throw runtime_error(building.name + BUILDING_FAILED);
             }
             logInfo((building.name + " finished information gathering").c_str());
+            char tmp[1024];
+            memset(tmp, 0, 1024);
+            read(pipe_fds[READ_END], tmp, 1024);
+            printf("%s\n", tmp);
         }
         else if(pid == 0){
-            // close(STDOUT_FILENO);
-            // dup2(pipe_fds[WRITE_END], STDOUT_FILENO);
-            // close(pipe_fds[WRITE_END]);
-            // close(pipe_fds[READ_END]);
+            close(STDOUT_FILENO);
+            dup2(pipe_fds[WRITE_END], STDOUT_FILENO);
+            close(pipe_fds[WRITE_END]);
+            close(pipe_fds[READ_END]);
             execl("./building", "./building", nullptr);
         }
         else{

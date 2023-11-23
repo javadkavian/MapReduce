@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <dirent.h>
 #include "globals.hpp"
 #include "named_pipe.hpp"
 #include "log.hpp"

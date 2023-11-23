@@ -1,5 +1,5 @@
 #include "include/gather_data.hpp"
-#include <dirent.h>
+
 using namespace std;
 
 

@@ -28,5 +28,7 @@ const std :: string UN_PIPE_FAILED = "failed to create unnamed pipe";
 const std :: string BUILDING_FAILED = " failed to gather information";
 const std :: string FORK_FAILED = "failed to fork!";
 const std :: string BUILD_PROC_ADDR = "./building_proc";
+const std :: string WATER_PROC_ADDR = "./water";
+const std :: string WATER_FAILED = " failed to gather water attributes";
 
 #endif

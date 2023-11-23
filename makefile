@@ -8,14 +8,16 @@ PATH_LOG = ./log
 
 OUT_MAIN = main
 OUT_BUILDING = building_proc
+OUT_WATER = water
 #----------------------------------------------
 vpath %.cpp $(PATH_SRC)
 vpath %.hpp $(PATH_INC)
 
 OBJS_MAIN = main.o log.o named_pipe.o gather_data.o
 
-OBJS_BUILDING = building_proc.o building.o
+OBJS_BUILDING = building_proc.o building.o log.o
 
+OBJ_WATER = water.o
 #-----------------------------------------------
 
 all: $(PATH_OBJ) $(PATH_LOG) $(OUT_MAIN) $(OUT_BUILDING)
@@ -41,7 +43,10 @@ $(PATH_OBJ)/named_pipe.o: named_pipe.cpp named_pipe.hpp globals.hpp log.hpp
 $(PATH_OBJ)/gather_data.o: gather_data.cpp gather_data.hpp globals.hpp named_pipe.hpp log.hpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-$(PATH_OBJ)/building_proc.o: building_proc.cpp building.hpp
+$(PATH_OBJ)/building_proc.o: building_proc.cpp building.hpp log.hpp
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(PATH_OBJ)/water.o: water.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(PATH_OBJ): ; mkdir -p $@

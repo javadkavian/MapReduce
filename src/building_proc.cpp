@@ -5,9 +5,17 @@ using namespace std;
 
 
 int main(int argc, char* argv[]){
-    string name = argv[0];
-    // string path = "./buildings/" + name + "/Gas.csv";
-    building_manager building_manager_(name);
-    cout << building_manager_.show_name() << endl;
+    building_manager building_manager_(argv[0]);
+    try
+    {
+        building_manager_.run();
+        cout << building_manager_.abbas << endl;
+    }
+    catch(const std::exception& e)
+    {
+        logError(e.what());
+        exit(EXIT_FAILURE);
+    }
+    
     exit(EXIT_SUCCESS);
 }

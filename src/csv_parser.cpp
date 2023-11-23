@@ -37,6 +37,11 @@ map <int, pair<int, int>> seperate_by_month(vector <vector<int>> parsed_csv){
             current_month = parsed_csv[i][MONTH_INDEX];
             begin = i;
         }
+        else if(i == parsed_csv.size() - 1){
+            end = i;
+            pair<int, int> new_month(begin, end);
+            indexes[current_month] = new_month;
+        }
     }
     return indexes;
 

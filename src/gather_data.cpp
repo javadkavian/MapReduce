@@ -25,7 +25,6 @@ void gather_data :: make_building_processes() {
             int return_status;
             logInfo(("waiting for " + building.name + " to gather information...").c_str());
             wait(&return_status);
-            cout << return_status << endl;
             if(return_status == FAILURE){
                 throw runtime_error(building.name + BUILDING_FAILED);
             }
@@ -33,14 +32,14 @@ void gather_data :: make_building_processes() {
             char tmp[1024];
             memset(tmp, 0, 1024);
             read(pipe_fds[READ_END], tmp, 1024);
-            printf("%s\n", tmp);
+            printf("%s", tmp);
         }
         else if(pid == 0){
             close(STDOUT_FILENO);
             dup2(pipe_fds[WRITE_END], STDOUT_FILENO);
             close(pipe_fds[WRITE_END]);
             close(pipe_fds[READ_END]);
-            execl("./building", "./building", nullptr);
+            execl(BUILD_PROC_ADDR.c_str(), building.name.c_str(),nullptr);
         }
         else{
             throw runtime_error(FORK_FAILED);

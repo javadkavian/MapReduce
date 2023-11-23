@@ -1,8 +1,11 @@
 #include "include/building.hpp"
-#include <iostream>
 
+
+using namespace std;
 
 int main(int argc, char* argv[]){
-    std :: cout << "abbas" << std :: endl;
-    exit(EXIT_FAILURE);
+    string name = argv[0];
+    // string path = "./buildings/" + name + "/Gas.csv";
+     
+    exit(EXIT_SUCCESS);
 }

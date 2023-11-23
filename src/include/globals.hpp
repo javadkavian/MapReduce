@@ -19,6 +19,6 @@ const std :: string DIR_DOESNT_EXIST = "directory doesn't exist!";
 const std :: string UN_PIPE_FAILED = "failed to create unnamed pipe";
 const std :: string BUILDING_FAILED = " failed to gather information";
 const std :: string FORK_FAILED = "failed to fork!";
-const char BUILDING_CHILD [] = "./building";
+const std :: string BUILD_PROC_ADDR = "./building";
 
 #endif

@@ -17,7 +17,7 @@ OBJS_MAIN = main.o log.o named_pipe.o gather_data.o
 
 OBJS_BUILDING = building_proc.o building.o log.o
 
-OBJ_CSV = csv_parser.o
+OBJ_CSV = csv_parser.o log.o
 #-----------------------------------------------
 
 all: $(PATH_OBJ) $(PATH_LOG) $(OUT_MAIN) $(OUT_BUILDING) $(OUT_CSV)
@@ -49,7 +49,7 @@ $(PATH_OBJ)/gather_data.o: gather_data.cpp gather_data.hpp globals.hpp named_pip
 $(PATH_OBJ)/building_proc.o: building_proc.cpp building.hpp log.hpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-$(PATH_OBJ)/csv_parser.o: csv_parser.cpp globals.hpp
+$(PATH_OBJ)/csv_parser.o: csv_parser.cpp globals.hpp log.hpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(PATH_OBJ): ; mkdir -p $@

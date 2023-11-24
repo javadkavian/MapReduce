@@ -9,7 +9,7 @@ typedef struct building{
 }building;
 
 typedef struct resource{
-    std :: map <int, int> average_mothly_usuage;
+    int average_mothly_usuage;
     std :: map <int, int> average_usuage_in_peak_hour;
     std :: map <int, int> total_monthly_usuage;
     std :: map <int, int> peak_our;
@@ -22,6 +22,7 @@ const int WRITE_END = 1;
 const int FAILURE = 256;
 const int CSV_COL_CNT = 9;
 const int MONTH_INDEX = 1;
+const int USUAGE_START_INDEX = 3;
 const char CSV_DELIM = ',';
 const std :: string ADDR_UNAVAILABLE = "address not provided";
 const std :: string MAIN_SERVER = "main_server_name";
@@ -33,5 +34,8 @@ const std :: string FORK_FAILED = "failed to fork!";
 const std :: string BUILD_PROC_ADDR = "./building_proc";
 const std :: string CSV_PARSER_PROC = "./csv_parser";
 const std :: string WATER_FAILED = " failed to gather water attributes";
+const std :: string CALCULATING = "calculating data of resource...";
+const std :: string COMPACTING = "compacting all data...";
+const std :: string DATA_COMPACTED = "datas compacted.sending to building...";
 
 #endif

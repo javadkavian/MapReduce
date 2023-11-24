@@ -12,11 +12,12 @@
 
 class building_manager {
     public:
-        building_manager(std :: string name_);
+        building_manager(std :: string name_, int pipe_fd_);
         void configure_resource_addresses();
         void run();
         void get_water_attributes();
     private:
+        int pipe_fd;
         std :: string name;
         std :: map <std :: string, resource> resource_report;
         std :: string water_address;
